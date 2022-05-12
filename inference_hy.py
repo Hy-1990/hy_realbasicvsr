@@ -53,6 +53,7 @@ class Worker:
         img = mmcv.imread(input_image_path, channel_order='rgb')
         ext = os.path.basename(input_image_path).split('.')[-1]
         inputs.append(img)
+        inputs.append(img)
         for i, img in enumerate(inputs):
             img = torch.from_numpy(img / 255.).permute(2, 0, 1).float()
             inputs[i] = img.unsqueeze(0)
@@ -84,6 +85,7 @@ class Worker:
                 filename = filename.replace(file_extension, '.png')
             result_path = os.path.join(output_dir, filename)
             mmcv.imwrite(output, result_path)
+            break
 
 
 if __name__ == '__main__':
